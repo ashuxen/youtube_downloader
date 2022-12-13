@@ -64,10 +64,22 @@ def refine_format(fmt_type: str = 'audio') -> (str, bool):
 
 
 st.set_page_config(page_title=" Youtube downloader", layout="wide")
-
+st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("https://github.com/ashuxen/youtube_downloader/blob/main/IMG_0827.png?raw=true");
+                background-attachment: fixed;
+                background-size: cover
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+    )
 # ====== SIDEBAR ======
 with st.sidebar:
     st.title("Youtube downloader")
+    st.write ("By: Ashutosh")
     st.subheader('Please select Format "video+audio" for best experience' )
 
     url = st.text_input("Insert your link here and press Enter", key="url")
@@ -112,18 +124,6 @@ with st.sidebar:
 
         st.button("Clear all address boxes", on_click=clear_text)
 
-st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url("https://github.com/ashuxen/youtube_downloader/blob/9a17f0512f43609554652950c1ecf60398ef73b6/IMG_0965.jpeg");
-                background-attachment: fixed;
-                background-size: cover
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
 
 # ====== MAIN PAGE ======
 

@@ -84,7 +84,7 @@ with st.sidebar:
 
     url = st.text_input("Insert your link here and press Enter", key="url")
 
-    fmt_type = st.selectbox("Choose Download type:", ['video (only)', 'audio (only)', 'video + audio'], key='fmt')
+    fmt_type = st.selectbox("Choose Download type:", ['video + audio','video (only)', 'audio (only)'], key='fmt')
 
     fmt, progressive = refine_format(fmt_type)
 

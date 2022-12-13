@@ -6,7 +6,6 @@ import base64
 import os
 
 
-# https://www.youtube.com/watch?v=Ch5VhJzaoaI&t=90s
 
 def clear_text():
     st.session_state["url"] = ""
@@ -68,11 +67,12 @@ st.set_page_config(page_title=" Youtube downloader", layout="wide")
 
 # ====== SIDEBAR ======
 with st.sidebar:
-    st.title("Youtube download app")
+    st.title("Youtube downloader")
+    st.subheader('Please select Format "video+audio" for best experience' )
 
-    url = st.text_input("Insert your link here", key="url")
+    url = st.text_input("Insert your link here and press Enter", key="url")
 
-    fmt_type = st.selectbox("Choose format:", ['video (only)', 'audio (only)', 'video + audio'], key='fmt')
+    fmt_type = st.selectbox("Choose Download type:", ['video (only)', 'audio (only)', 'video + audio'], key='fmt')
 
     fmt, progressive = refine_format(fmt_type)
 
@@ -83,7 +83,7 @@ with st.sidebar:
         streams_fmt = [t for t in tube.streams if t.type == fmt and t.is_progressive == progressive]
 
         mime_types = set([t.mime_type for t in streams_fmt])
-        mime_type = st.selectbox("Mime types:", mime_types, key='mime')
+        mime_type = st.selectbox("Format types:", mime_types, key='mime')
 
         streams_mime = StreamQuery(streams_fmt).filter(mime_type=mime_type)
 
@@ -112,12 +112,17 @@ with st.sidebar:
 
         st.button("Clear all address boxes", on_click=clear_text)
 
-        st.info(
-            "This is an open source project and you are very welcome to contribute your "
-            "comments, questions, resources and apps as "
-            "[issues](https://github.com/maxmarkov/streamlit-youtube/issues) or "
-            "[pull requests](https://github.com/maxmarkov/streamlit-youtube/pulls) "
-            "to the [source code](https://github.com/maxmarkov/streamlit-youtube). "
+st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("https://github.com/ashuxen/youtube_downloader/blob/9a17f0512f43609554652950c1ecf60398ef73b6/IMG_0965.jpeg");
+                background-attachment: fixed;
+                background-size: cover
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
         )
 
 # ====== MAIN PAGE ======
